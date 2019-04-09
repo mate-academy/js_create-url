@@ -5,9 +5,9 @@ const createUrl = require('./createUrl');
 test('Create URL with 2 params', () => {
   expect(createUrl(
     'http://localhost:3000/api/countries/{country}/regions/{region}/',
-    { country: 'Ukraine', region: 'Kiev' }
+    { country: 'Ukraine', region: 'Kyiv' }
   ))
-    .toBe('http://localhost:3000/api/countries/Ukraine/regions/Kiev/');
+    .toBe('http://localhost:3000/api/countries/Ukraine/regions/Kyiv/');
 });
 
 test('Create URL with 2 params', () => {
@@ -30,4 +30,11 @@ test('Create URL with 5 params', () => {
     '/api/{a}/{b}/{c}/{d}/{e}', { a: 1, b: 2, c: 3, d: 4, e: 5 }
   ))
     .toBe('/api/1/2/3/4/5');
+});
+
+test('Create URL with 3 valid params and 1 missing', () => {
+  expect(createUrl(
+    '/api/{a}/{b}/{c}/{d}', { a: 1, b: 2, d: 4 }
+  ))
+    .toBe('/api/1/2/{c}/4');
 });
