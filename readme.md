@@ -1,4 +1,4 @@
-# Boilerplate for JS tasks
+# Create URL from params
 
 **Read the guideline before start**
 
