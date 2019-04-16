@@ -17,12 +17,12 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  let link = template;
+  let url = template;
   for (let key in params) {
     let reg = new RegExp('{' + key + '}');
-    link = link.replace(reg, params[key]);
+    url = url.replace(reg, params[key]);
   }
-  return link.replace(/{\w}/g, undefined);
+  return url.replace(/{\w}/g, undefined);
 }
 
 module.exports = createUrl;
