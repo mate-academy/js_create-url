@@ -17,7 +17,22 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let match = template.match(/\{.*?\}/g);
+  let urlArr = template.split('/');
+
+  for (let i = 0; i < match.length; i++) {
+    for (let j = 0; j < urlArr.length; j++) {
+      if (match[i] === urlArr[j]) {
+        urlArr[j] = params[match[i].replace(/\{(.*?)\}/, '$1')];
+      }
+    }
+  }
+  for (let i = 0; i < urlArr.length; i++) {
+    if (urlArr[i] === undefined) {
+      urlArr[i] = 'undefined';
+    }
+  }
+  return urlArr.join('/');
 }
 
 module.exports = createUrl;
