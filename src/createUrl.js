@@ -16,8 +16,19 @@
  *
  * @return {string} - created URL
  */
-function createUrl(template, params) {
-  // write code here
+function createUrl(template, param) {
+  let stirng = template;
+  const operands = stirng.match(/{(.*?)}/g);
+  const withoutBraces = operands.map(oper => oper.replace(/[^a-z]/g, ''));
+  withoutBraces.forEach((word, index) => {
+    if (param.hasOwnProperty(word)) {
+      stirng = stirng.replace(operands[index], param[word]);
+    } else {
+      stirng = stirng.replace(operands[index], 'undefined');
+    }
+    return stirng;
+  });
+  return stirng;
 }
 
 module.exports = createUrl;
