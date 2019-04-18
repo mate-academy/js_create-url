@@ -19,8 +19,7 @@
 function createUrl(template, params) {
   let url = template;
   for (let key in params) {
-    let reg = new RegExp('{' + key + '}');
-    url = url.replace(reg, params[key]);
+    url = url.replace(new RegExp('{' + key + '}'), params[key]);
   }
   return url.replace(/{\w}/g, undefined);
 }
