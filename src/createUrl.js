@@ -17,7 +17,12 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const words = template.split('/').map(word => {
+    if (/^{.*}$/.test(word)) {
+      return `${params[word.split(/[{}]/)[1]]}`;
+    } return word;
+  });
+  return words.join('/');
 }
 
 module.exports = createUrl;
