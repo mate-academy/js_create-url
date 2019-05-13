@@ -20,7 +20,8 @@ function createUrl(template, params) {
   const words = template.split('/').map(word => {
     if (/^{.*}$/.test(word)) {
       return `${params[word.split(/[{}]/)[1]]}`;
-    } return word;
+    } 
+    return word;
   });
   return words.join('/');
 }
