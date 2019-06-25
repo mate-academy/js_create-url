@@ -17,7 +17,17 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const keys = Object.keys(params);
+  const paramKeys = keys.map(k => '{' + k + '}');
+  const url = paramKeys.reduce((urlStr, key, idx) =>
+    urlStr.replace(key, params[keys[idx]]), template);
+  const urlArr = url.split('');
+  while (urlArr.indexOf('{') !== -1) {
+    const a = urlArr.indexOf('{');
+    const b = urlArr.indexOf('}') - a;
+    urlArr.splice(a, b + 1, 'undefined');
+  }
+  return urlArr.join('');
 }
 
 module.exports = createUrl;
