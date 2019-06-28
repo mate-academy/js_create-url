@@ -17,7 +17,20 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const replaceRegExp = /\{\w+\}/;
+
+  const arrTemplateParams = template
+    .match(/(?<=\{)\w+(?=\})/g)
+    .map(item => params[item]);
+
+  let createUrlresult = template;
+
+  for (let i = 0; i < arrTemplateParams.length; i++) {
+    createUrlresult
+    = createUrlresult.replace(replaceRegExp, arrTemplateParams[i]);
+  }
+
+  return createUrlresult;
 }
 
 module.exports = createUrl;
