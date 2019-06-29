@@ -19,7 +19,7 @@
 
 const createUrl = (template, params) => {
   const pattern = /{([^}]+?)}/g;
-  const url = template.replace(pattern, (match, el) => params[el]);
+  const url = template.replace(pattern, (_match, el) => params[el]);
 
   return url;
 };
