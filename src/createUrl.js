@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign,no-useless-escape */
 'use strict';
 
 /**
@@ -17,7 +18,11 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  for (const key in params) {
+    const pattern = new RegExp('\{(' + key + ')\}', 'g');
+    template = template.replace(pattern, params[key]);
+  }
+  return template.replace(/\{\w*\}/g, undefined);
 }
 
 module.exports = createUrl;
