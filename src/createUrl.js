@@ -19,6 +19,7 @@
 function createUrl(template, params) {
   let url = template;
   const partsToReplace = template.match(/\{(\w+)\}/g);
+
   for (let i = 0; i < partsToReplace.length; i++) {
     url = url
       .replace(partsToReplace[i],
