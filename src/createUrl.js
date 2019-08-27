@@ -18,8 +18,7 @@
  */
 function createUrl(template, params) {
   return template
-    .replace(/\{(\w*)\}/g, (_, p1) => params
-      .hasOwnProperty(p1) ? params[p1] : undefined);
+    .replace(/\{(\w*)\}/g, (_, p1) => params[p1]);
 }
 
 module.exports = createUrl;
