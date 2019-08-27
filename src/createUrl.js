@@ -22,10 +22,10 @@ function createUrl(template, params) {
   let regex;
   let holder = template;
 
-  for (let i = 0; i < keysArr.length; i++) {
-    regex = new RegExp('{' + keysArr[i] + '}', 'g');
+  keysArr.forEach((key, i) => {
+    regex = new RegExp('{' + key + '}', 'g');
     holder = holder.replace(regex, valuesArr[i]);
-  }
+  });
 
   return holder.replace(/{\w}/g);
 }
