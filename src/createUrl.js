@@ -17,7 +17,15 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let url = template;
+  const pattParams = /{\w+}/g;
+
+  Object.entries(params).forEach(item => {
+    url = url.replace(`{${item[0]}}`, item[1]);
+  });
+  url = url.replace(pattParams, 'undefined');
+
+  return url;
 }
 
 module.exports = createUrl;
