@@ -17,7 +17,19 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const keysArr = Object.keys(params);
+  const valuesArr = Object.values(params);
+  let regex;
+  let holder = template;
+  for (let i = 0; i < keysArr.length; i++) {
+    regex = new RegExp('{' + keysArr[i] + '}', 'g');
+    holder = holder.replace(regex, valuesArr[i]);
+  }
+  return holder.replace(/{\w}/g);
 }
 
 module.exports = createUrl;
+
+createUrl(
+  '/api/{a}/{b}/{c}/{d}', { a: 1, b: 2, d: 4 }
+);
