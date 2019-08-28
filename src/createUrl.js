@@ -17,17 +17,6 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const keysArr = Object.keys(params);
-  const valuesArr = Object.values(params);
-  let regex;
-  let holder = template;
-
-  keysArr.forEach((key, i) => {
-    regex = new RegExp('{' + key + '}', 'g');
-    holder = holder.replace(regex, valuesArr[i]);
-  });
-
-  return holder.replace(/{\w}/g);
+  return template.replace(/{(\w+)}/g, (matched, key) => params[key]);
 }
-
 module.exports = createUrl;
