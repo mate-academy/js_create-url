@@ -23,6 +23,7 @@ function createUrl(template, params) {
   Object.entries(params).forEach(item => {
     url = url.replace(`{${item[0]}}`, item[1]);
   });
+
   url = url.replace(pattParams, 'undefined');
 
   return url;
