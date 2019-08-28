@@ -23,7 +23,7 @@ function createUrl(template, params) {
     url = url.replace(`{${key}}`, params[key]);
   }
 
-  return url.replace(/\{(\w+)\}/g, undefined);
+  return url.replace(/\{(\w+)\}/g);
 }
 
 module.exports = createUrl;
