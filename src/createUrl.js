@@ -24,6 +24,7 @@ function createUrl(template, params) {
     const pattern = new RegExp(`{${item[0]}}`, 'g');
     url = url.replace(pattern, item[1]);
   });
+
   return url.replace(/{\w}/g);
 }
 
