@@ -18,9 +18,8 @@
  */
 function createUrl(template, params) {
   const rule = /\{([\w]+)\}/g;
-  const setApiValue = (match, key) => {
-    return params[key];
-  };
+  const setApiValue = (match, key) => params[key];
+
   return template.replace(rule, setApiValue);
 }
 
