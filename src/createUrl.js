@@ -18,11 +18,11 @@
  */
 function createUrl(template, params) {
   let result = template;
-  const regEx = /{[a-z0-9]}/gi;
+  const regExp = /{[a-z0-9]}/gi;
   for (const key in params) {
     result = result.replace(`{${key}}`, params[key]);
   }
-  return result.replace(regEx);
+  return result.replace(regExp);
 }
 
 module.exports = createUrl;
