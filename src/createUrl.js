@@ -17,13 +17,8 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const pattern = /{.*?}/g;
-  const arrReg = template.match(pattern);
-  let url = template;
-  arrReg.forEach(item => {
-    url = url.replace(item, params[item.slice(1, -1)]);
-  });
-  return url;
+  const pattern = /{(.*?)}/g;
+  return template.replace(pattern, (item, elem) => params[elem]);
 }
 
 module.exports = createUrl;
