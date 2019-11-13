@@ -17,7 +17,15 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const insideBrackets = template.match(/{\w+}/g);
+  let address = template;
+
+  for (let i = 0; i < insideBrackets.length; i++) {
+    const paramName = String(insideBrackets[i].match(/\w+/g));
+    const isParam = params[paramName];
+    address = address.replace(insideBrackets[i], isParam);
+  }
+  return address;
 }
 
 module.exports = createUrl;
