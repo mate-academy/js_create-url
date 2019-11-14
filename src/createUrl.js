@@ -17,15 +17,8 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const partsOfLink = template.split('/');
-  for (let i = 0; i < partsOfLink.length; i++) {
-    const elementToReplace = partsOfLink[i].match(/\{[a-zA-Z]+\}/);
-    const elementToInsert = partsOfLink[i].match(/[a-zA-Z]+/) || [''];
-    if (elementToReplace !== null) {
-      partsOfLink.splice(i, 1, `${params[elementToInsert[0]]}`);
-    }
-  }
-  return partsOfLink.join('/');
+  return template
+    .replace(/\{[a-zA-Z]+\}/g, (match) => params[match.match(/[a-zA-Z]+/)]);
 }
 
 module.exports = createUrl;
