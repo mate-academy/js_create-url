@@ -2,7 +2,7 @@
 
 /**
  * Implement createUrl function:
- *
+ * fs_on_dec19_salogubova
  * Function takes string (template) and object (params). It returns URL based on
  * template and replaces all `{name}` with params.name. If params.name is not
  * given put 'undefined' instead.
@@ -17,7 +17,19 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let url = template;
+
+  for (const param in params) {
+    const redExpParam = new RegExp(`{${param}}`);
+
+    url = url.replace(redExpParam, params[param].toString());
+  }
+
+  const redExpUnderfindParam = /{\w+}/g;
+
+  url = url.replace(redExpUnderfindParam, undefined);
+
+  return url;
 }
 
 module.exports = createUrl;
