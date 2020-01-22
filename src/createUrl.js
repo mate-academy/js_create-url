@@ -17,7 +17,18 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const paramNames = Object.getOwnPropertyNames(params);
+  let inputStr = template;
+
+  for (let i = 0; i < paramNames.length; i++) {
+    const pattern = new RegExp('{' + paramNames[i] + '}');
+
+    if (`{${paramNames[i]}}`.match(pattern)) {
+      inputStr = inputStr.replace(pattern, params[paramNames[i]]);
+    }
+  }
+
+  return inputStr.replace(/\{\w+\}/, 'undefined');
 }
 
 module.exports = createUrl;
