@@ -18,6 +18,29 @@
  */
 function createUrl(template, params) {
   // write code here
+  const props = template.match(/\{\w+\}/g);
+
+  const items = [];
+  let result = template;
+
+  props.forEach(el => {
+    let k = el.replace('{', '');
+
+    k = k.replace('}', '');
+    items.push(k);
+  });
+
+  items.forEach(el => {
+    if (params.hasOwnProperty(el)) {
+      result = result.replace(`{${el}}`, `${params[el]}`);
+    }
+
+    if (!params.hasOwnProperty(el)) {
+      result = result.replace(`{${el}}`, 'undefined');
+    }
+  });
+
+  return result;
 }
 
 module.exports = createUrl;
