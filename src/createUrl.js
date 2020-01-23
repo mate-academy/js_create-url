@@ -16,8 +16,8 @@
  *
  * @return {string} - created URL
  */
-function createUrl(template, params) {
-  // write code here
-}
 
+function createUrl(template, params) {
+  return template.replace(/\{(\w+)\}/g, (match, key) => params[key]);
+}
 module.exports = createUrl;
