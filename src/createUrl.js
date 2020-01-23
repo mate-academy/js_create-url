@@ -16,8 +16,11 @@
  *
  * @return {string} - created URL
  */
+
 function createUrl(template, params) {
-  // write code here
+  return template.split('/')
+    .map(item => item.replace(/\{(\w*)\}/, (match, elem) => params[elem]))
+    .join('/');
 }
 
 module.exports = createUrl;
