@@ -18,7 +18,7 @@
  */
 function createUrl(template, params) {
   return template.replace(
-    /\{(\w*)\}/g, ($1, $2) => params[$2]
+    /\{(\w*)\}/g, (match, key) => params[key]
   );
 }
 
