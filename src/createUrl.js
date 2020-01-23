@@ -17,14 +17,8 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  return template.replace(/({\w+})/g, str => {
-    const key = str.replace(/{|}/g, '');
-
-    if (params[key] !== undefined) {
-      return params[key];
-    } else {
-      return 'undefined';
-    }
+  return template.replace(/{(\w+)}/g, (match, str) => {
+    return params[str];
   });
 }
 
