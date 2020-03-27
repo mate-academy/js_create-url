@@ -17,7 +17,23 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const base = template.split('/');
+  const keyMask = /{([\s\S]+?)}/;
+  const result = [];
+
+  for (let i = 0; i < base.length; i++) {
+    if (base[i].match(keyMask)) {
+      const key = base[i].slice(1, -1);
+
+      (params[key] === undefined)
+        ? result.push('undefined')
+        : result.push(params[key]);
+    } else {
+      result.push(base[i]);
+    }
+  }
+
+  return result.join('/');
 }
 
 module.exports = createUrl;
