@@ -18,9 +18,11 @@
  */
 function createUrl(template, params) {
   return template.split('/').map(function(item) {
+    const property = item.slice(1, -1);
+
     if (item[0] === '{') {
-      if (params.hasOwnProperty(item.slice(1, -1))) {
-        return params[item.slice(1, -1)];
+      if (params.hasOwnProperty(property)) {
+        return params[property];
       };
 
       return 'undefined';
