@@ -18,6 +18,30 @@
  */
 function createUrl(template, params) {
   // write code here
+  const regExp = /(?<={)\w+/g;
+  const str = template;
+  let str2 = '';
+
+  for (let i = 0; i < template.match(regExp).length; i++) {
+    const string = params[template.match(regExp)[i]];
+
+    if (params.hasOwnProperty(template.match(regExp)[i]) === false && i > 0) {
+      // eslint-disable-next-line max-len
+      str2 = str2.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), undefined);
+    } else if (params.hasOwnProperty(template.match(regExp)[i]) === false) {
+      // eslint-disable-next-line max-len
+      str2 = str.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), undefined);
+      // eslint-disable-next-line max-len
+    } else if (params.hasOwnProperty(template.match(regExp)[i]) === true && i > 0) {
+      // eslint-disable-next-line max-len
+      str2 = str2.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), string);
+    } else if (params.hasOwnProperty(template.match(regExp)[i]) === true) {
+      // eslint-disable-next-line max-len
+      str2 = str.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), string);
+    }
+  }
+
+  return str2;
 }
 
 module.exports = createUrl;
