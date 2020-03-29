@@ -5,7 +5,7 @@
   "main": "src/createUrl.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/createUrl.js"
   },
   "author": "Mate academy",
   "license": "GPL-3.0",

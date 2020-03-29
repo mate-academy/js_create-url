@@ -18,6 +18,7 @@
  */
 function createUrl(template, params) {
   // write code here
+  return template.replace(/\{(.+?)\}/g, (macth, $1) => params[$1]);
 }
 
 module.exports = createUrl;
