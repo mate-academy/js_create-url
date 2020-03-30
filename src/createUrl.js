@@ -17,16 +17,21 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const arrOfObjects = Object.entries(params).join(',').split(',');
   let res = template;
 
-  for (let i = 0; i < arrOfObjects.length; i++) {
-    if (res.includes(arrOfObjects[i])) {
-      res = res.replace('{' + arrOfObjects[i] + '}', arrOfObjects[i + 1]);
-    }
+  for (let i = 0; i < template.length; i++) {
+    const wordToReplase = res.match(/{\w*}/);
+
+    res = res.replace(wordToReplase, replacer);
   }
 
-  return res.replace(/({\w*})/g, undefined);
+  function replacer(wordToReplase) {
+    const normalizedWord = wordToReplase.slice(1, -1);
+
+    return params[normalizedWord];
+  }
+
+  return res;
 }
 
 module.exports = createUrl;
