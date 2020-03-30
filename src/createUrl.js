@@ -20,9 +20,10 @@ function createUrl(template, params) {
   // write code here
   const regExp = /(?<={)\w+/g;
   const str = template;
+  const exprValue = template.match(regExp).length;
   let str2 = '';
 
-  for (let i = 0; i < template.match(regExp).length; i++) {
+  for (let i = 0; i < exprValue; i++) {
     const string = params[template.match(regExp)[i]];
 
     if (params.hasOwnProperty(template.match(regExp)[i]) === false && i > 0) {
