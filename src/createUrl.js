@@ -17,32 +17,18 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
-  const regExp = /(?<={)\w+/g;
-  const str = template;
-  const regValue = template.match(regExp).length;
-  let str2 = '';
+  // eslint-disable-next-line no-return-assign,no-unused-vars
+  let str;
 
-  for (let i = 0; i < regValue; i++) {
-    const string = params[template.match(regExp)[i]];
+  // eslint-disable-next-line no-return-assign
+  return str = template.replace(/{(\w+)}/g, (match, value, index) => {
+    // eslint-disable-next-line no-console
+    console.log(match, value, index);
+    // eslint-disable-next-line no-console
+    console.log(params[value]);
 
-    if (params.hasOwnProperty(template.match(regExp)[i]) === false && i > 0) {
-      // eslint-disable-next-line max-len
-      str2 = str2.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), undefined);
-    } else if (params.hasOwnProperty(template.match(regExp)[i]) === false) {
-      // eslint-disable-next-line max-len
-      str2 = str.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), undefined);
-      // eslint-disable-next-line max-len
-    } else if (params.hasOwnProperty(template.match(regExp)[i]) === true && i > 0) {
-      // eslint-disable-next-line max-len
-      str2 = str2.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), string);
-    } else if (params.hasOwnProperty(template.match(regExp)[i]) === true) {
-      // eslint-disable-next-line max-len
-      str2 = str.replace(template.match(/{/) + template.match(regExp)[i] + template.match(/}/), string);
-    }
-  }
-
-  return str2;
+    return params[value];
+  });
 }
 
 module.exports = createUrl;
