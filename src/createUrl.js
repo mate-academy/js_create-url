@@ -22,11 +22,6 @@ function createUrl(template, params) {
 
   // eslint-disable-next-line no-return-assign
   return str = template.replace(/{(\w+)}/g, (match, value, index) => {
-    // eslint-disable-next-line no-console
-    console.log(match, value, index);
-    // eslint-disable-next-line no-console
-    console.log(params[value]);
-
     return params[value];
   });
 }
