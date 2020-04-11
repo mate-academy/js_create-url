@@ -17,7 +17,17 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const rest = template.split(/({\w+})/).filter(str => str);
+
+  for (let i = 0; i < rest.length; i++) {
+    if (rest[i][0] === '{') {
+      const name = rest[i].slice(1, -1);
+
+      rest[i] = params.hasOwnProperty(name) ? params[name] : 'undefined';
+    }
+  }
+
+  return rest.join('');
 }
 
 module.exports = createUrl;
