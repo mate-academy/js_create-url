@@ -23,7 +23,7 @@ function createUrl(template, params) {
     url = url.replace(`{${key}}`, params[key]);
   }
 
-  url = url.replace(/\{.+\}/, 'undefined');
+  url = url.replace(/\{.+\}/g, 'undefined');
 
   return url;
 }
