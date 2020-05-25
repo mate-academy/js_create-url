@@ -16,20 +16,6 @@
  *
  * @return {string} - created URL
  */
-// function createUrl(template, params) {
-//   let url = '' + template.match(/[^{]+/)[0];
-
-//   console.log(url);
-
-//   const matches = template.match(/\{*\w+\}/g);
-
-//   for (const i of matches) {
-//     url += '/' + params[i.slice(1, -1)];
-//   }
-
-//   return url;
-// }
-
 function createUrl(template, params) {
   const regex = /\{*\w+\}/;
   const matches = template.match(new RegExp(regex, 'g'));
