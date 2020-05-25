@@ -19,14 +19,13 @@
 function createUrl(template, params) {
   let url = template;
   let regexp;
-  let i;
 
-  for (i in params) {
+  for (const i in params) {
     regexp = new RegExp('{' + i + '}', 'g');
     url = url.replace(regexp, params[i]);
   };
 
-  return url.replace(/{\w}/g, 'undefined');
+  return url.replace(/{\w+}/g, 'undefined');
 }
 
 module.exports = createUrl;
