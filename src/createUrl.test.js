@@ -1,5 +1,5 @@
 'use strict';
-
+/* eslint-disable */
 const createUrl = require('./createUrl');
 
 test('Create URL missing params', () => {
