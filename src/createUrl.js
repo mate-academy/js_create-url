@@ -17,7 +17,20 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let templateUrl = template;
+  const missingValuePattern = /{.*?}/g;
+  const missingValuePath = undefined;
+  let pattern;
+
+  for (const [key, value] of Object.entries(params)) {
+    pattern = new RegExp(`{${key}}`);
+
+    templateUrl = templateUrl.replace(pattern, value);
+  }
+
+  templateUrl = templateUrl.replace(missingValuePattern, missingValuePath);
+
+  return templateUrl;
 }
 
 module.exports = createUrl;
