@@ -18,6 +18,16 @@
  */
 function createUrl(template, params) {
   // write code here
+  let res = template;
+  const reg = RegExp(/\{\w+\}/g);
+  const reg1 = RegExp(/(?!\{)\w+(?=\})/);
+  const names = template.match(reg);
+
+  for (let i = 0; i < names.length; i++) {
+    res = res.replace(names[i], params[names[i].match(reg1)]);
+  }
+
+  return res;
 }
 
 module.exports = createUrl;
