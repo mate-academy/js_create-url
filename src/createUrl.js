@@ -16,8 +16,32 @@
  *
  * @return {string} - created URL
  */
+// function createUrl(template, params) {
+//   let url = '' + template.match(/[^{]+/)[0];
+
+//   console.log(url);
+
+//   const matches = template.match(/\{*\w+\}/g);
+
+//   for (const i of matches) {
+//     url += '/' + params[i.slice(1, -1)];
+//   }
+
+//   return url;
+// }
+
 function createUrl(template, params) {
-  // write code here
+  const regex = /\{*\w+\}/;
+  const matches = template.match(new RegExp(regex, 'g'));
+  let url = template;
+
+  for (const i of matches) {
+    const key = params[i.slice(1, -1)];
+
+    url = url.replace(regex, key);
+  }
+
+  return url;
 }
 
 module.exports = createUrl;
