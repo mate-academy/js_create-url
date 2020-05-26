@@ -18,15 +18,16 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
+  const pattern = /\{\w+\}/g;
   let url = template;
 
   for (const param in params) {
-    const regex = new RegExp(`{${param}}`);
+    const paramPattern = new RegExp(`{${param}}`);
 
-    url = url.replace(regex, params[param]);
+    url = url.replace(paramPattern, params[param]);
   }
 
-  url = url.replace(/\{\w+\}/g, 'undefined');
+  url = url.replace(pattern, 'undefined');
 
   return url;
 }
