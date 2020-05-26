@@ -18,7 +18,7 @@
  */
 function createUrl(template, params) {
   let templateUrl = template;
-  const missingValuePattern = /{.*?}/g;
+  const missingValuePattern = /{\w+}/g;
   const missingValuePath = undefined;
   let pattern;
 
