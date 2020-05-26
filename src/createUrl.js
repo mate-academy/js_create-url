@@ -32,6 +32,4 @@ function createUrl(template, params) {
   return url;
 }
 
-createUrl('/api/{id}', { name: 'Petya' });
-
 module.exports = createUrl;
