@@ -9,7 +9,7 @@
  *
  * createUrl('/api/{id}', {id: 0}) === '/api/0'
  * createUrl('/api/{id}', {name: 'Petya'}) === '/api/undefined'
- * createUrl('/api/{list}/{id}', {list: 'items', id: 0}) === '/api/items/0'
+ * createUrl(''/api/{list}/{id}'', {list: 'items', id: 0}) === '/api/items/0'
  *
  * @param {string} template
  * @param {object} params
@@ -17,7 +17,21 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const regexUrl = /\{[a-z]+\}/i;
+  const regexSection = /\{[a-z]+\}/gi;
+  const regexParentheses = /\{|\}/g;
+  const sections = template.match(regexSection);
+  const sectionsArray = Object.values(sections);
+  let url = template;
+
+  for (let i = 0; i < sectionsArray.length; i++) {
+    sectionsArray[i] = sectionsArray[i].replace(regexParentheses, '');
+    url = url.replace(regexUrl, params[sectionsArray[i]]);
+  }
+
+  return url;
 }
+
+createUrl('/api/{id}', { name: 'Petya' });
 
 module.exports = createUrl;
