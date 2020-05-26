@@ -17,7 +17,18 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let newString = template;
+  const regExForUndefined = /{\w+}/g;
+
+  for (const [key, value] of Object.entries(params)) {
+    const regEx = new RegExp(`{${key}}`);
+
+    newString = newString.replace(regEx, value);
+  }
+
+  newString = newString.replace(regExForUndefined, 'undefined');
+
+  return newString;
 }
 
 module.exports = createUrl;
