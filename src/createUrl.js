@@ -18,14 +18,12 @@
  */
 function createUrl(template, params) {
   const regexUrl = /\{[a-z]+\}/i;
-  const regexSection = /\{[a-z]+\}/gi;
-  const regexParentheses = /\{|\}/g;
+  const regexSection = /[a-z]+(?=\})/gi;
   const sections = template.match(regexSection);
   const sectionsArray = Object.values(sections);
   let url = template;
 
   for (let i = 0; i < sectionsArray.length; i++) {
-    sectionsArray[i] = sectionsArray[i].replace(regexParentheses, '');
     url = url.replace(regexUrl, params[sectionsArray[i]]);
   }
 
