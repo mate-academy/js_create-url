@@ -18,10 +18,10 @@
  */
 function createUrl(template, params) {
   let url = template;
-  let regexp;
 
   for (const i in params) {
-    regexp = new RegExp('{' + i + '}', 'g');
+    const regexp = new RegExp('{' + i + '}', 'g');
+
     url = url.replace(regexp, params[i]);
   };
 
