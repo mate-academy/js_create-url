@@ -21,13 +21,15 @@ function createUrl(template, params) {
   const pattern = /\{\w+\}/g;
   let url = template;
 
-  for (const param in params) {
-    const paramPattern = new RegExp(`{${param}}`);
+  url = url.replace(pattern, (x) => {
+    const param = x.slice(1, -1);
 
-    url = url.replace(paramPattern, params[param]);
-  }
+    if (params[param] !== undefined) {
+      return params[param];
+    }
 
-  url = url.replace(pattern, 'undefined');
+    return 'undefined';
+  });
 
   return url;
 }
