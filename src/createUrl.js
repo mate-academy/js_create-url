@@ -20,7 +20,7 @@ function createUrl(template, params) {
   const pattern = /{(\w+)}/g;
 
   return template.replace(
-    pattern, (match, group) => params[group]
+    pattern, (match, key) => params[key]
   );
 }
 
