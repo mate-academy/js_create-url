@@ -19,7 +19,7 @@
 function createUrl(template, params) {
   const pattern = /{(\w+)}/g;
 
-  return template.replace(pattern, (match, p1) => params[p1]);
+  return template.replace(pattern, (match, key) => params[key]);
 }
 
 module.exports = createUrl;
