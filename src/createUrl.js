@@ -19,9 +19,8 @@
  */
 function createUrl(template, params) {
   const pattern = /\{\w+\}/g;
-  let url = template;
 
-  url = url.replace(pattern, (x) => {
+  return template.replace(pattern, (x) => {
     const param = x.slice(1, -1);
 
     if (params[param] !== undefined) {
@@ -30,8 +29,6 @@ function createUrl(template, params) {
 
     return 'undefined';
   });
-
-  return url;
 }
 
 module.exports = createUrl;
