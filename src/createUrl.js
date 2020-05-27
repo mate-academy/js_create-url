@@ -17,20 +17,11 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  let templateUrl = template;
   const missingValuePattern = /{\w+}/g;
-  const missingValuePath = undefined;
-  let pattern;
 
-  for (const [key, value] of Object.entries(params)) {
-    pattern = new RegExp(`{${key}}`);
-
-    templateUrl = templateUrl.replace(pattern, value);
-  }
-
-  templateUrl = templateUrl.replace(missingValuePattern, missingValuePath);
-
-  return templateUrl;
+  return template.replace(
+    missingValuePattern, match => params[match.slice(1, -1)]
+  );
 }
 
 module.exports = createUrl;
