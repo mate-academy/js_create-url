@@ -18,7 +18,7 @@
  */
 function createUrl(template, params) {
   const pattern = /{(\w+)}/gi;
-  const replaceTemplate = (string, value) => params[value];
+  const replaceTemplate = (match, value) => params[value];
 
   return template.replace(pattern, replaceTemplate);
 }
