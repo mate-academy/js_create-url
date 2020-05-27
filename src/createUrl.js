@@ -18,16 +18,13 @@
 * @return {string} - created URL
 */
 function createUrl(template, params) {
-  const keysList = template.match(/(?<={)[a-z]{1,}(?=})/g);
   let url = template;
 
-  for (let i = 0; i < keysList.length; i++) {
-    if (params[keysList[i]] !== undefined) {
-      url = url.replace(/\{[a-z]{1,}\}/, params[keysList[i]]);
-    } else {
-      url = url.replace(/\{[a-z]{1,}\}/, undefined);
-    };
-  }
+  url = url.replace(/\{[a-z]{1,}\}/g, (someVariable, element) => {
+    const text = someVariable.match(/(?<={)[a-z]+(?=})/);
+
+    return params[text];
+  });
 
   return url;
 }
