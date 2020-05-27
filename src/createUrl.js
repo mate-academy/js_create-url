@@ -17,11 +17,10 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const pattern = /\{\w+\}/g;
-  const replaceTemplate = (string) => params[string.replace(/[{}]/g, '')];
-  const url = template.replace(pattern, replaceTemplate);
+  const pattern = /{(\w+)}/gi;
+  const replaceTemplate = (string, value) => params[value];
 
-  return url;
+  return template.replace(pattern, replaceTemplate);
 }
 
 module.exports = createUrl;
