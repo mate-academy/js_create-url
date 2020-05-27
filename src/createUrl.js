@@ -17,10 +17,10 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const missingValuePattern = /{(\w+)}/g;
+  const pattern = /{(\w+)}/g;
 
   return template.replace(
-    missingValuePattern, (match, p1) => params[p1]
+    pattern, (match, group) => params[group]
   );
 }
 
