@@ -17,15 +17,13 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const regexUrl = /\{[a-z]+\}/i;
-  const regexSection = /[a-z]+(?=\})/gi;
-  const sections = template.match(regexSection);
-  const sectionsArray = Object.values(sections);
-  let url = template;
+  const regex = /{(\w+)}/gi;
 
-  for (let i = 0; i < sectionsArray.length; i++) {
-    url = url.replace(regexUrl, params[sectionsArray[i]]);
-  }
+  const url = template.replace(regex,
+    function(object, section) {
+      return params[section];
+    }
+  );
 
   return url;
 }
