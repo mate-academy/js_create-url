@@ -17,10 +17,12 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  const link = template.replace(
-    /\{\w*\}/g, str => params[str.replace(/[{}]/g, '')]);
+  const templatePattern = /{(\w*)}/g;
+  const link = template.replace(templatePattern, (match, parameter) => {
+    return params[parameter];
+  });
 
   return link;
 }
-// createUrl('/api/{list}/{id}', {list: 'items', id: 0})
+
 module.exports = createUrl;
