@@ -17,19 +17,9 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  let url = template;
-  const keys = template.match(/(?<={)\w+(?=})/g);
-  const regExp = /{\w+}/;
+  const regExp = /{(\w+)}/g;
 
-  for (let i = 0; i < keys.length; i++) {
-    if (params[keys[i]] === undefined) {
-      url = url.replace(regExp, undefined);
-    } else {
-      url = url.replace(regExp, params[keys[i]]);
-    }
-  }
-
-  return url;
+  return template.replace(regExp, (group1, group2) => params[group2]);
 }
 
 module.exports = createUrl;
