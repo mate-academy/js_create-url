@@ -19,8 +19,9 @@
 */
 function createUrl(template, params) {
   let url = template;
+  const pattern = /\{[a-z]{1,}\}/g;
 
-  url = url.replace(/\{[a-z]{1,}\}/g, (someVariable, element) => {
+  url = url.replace(pattern, (someVariable, element) => {
     const text = someVariable.match(/(?<={)[a-z]+(?=})/);
 
     return params[text];
