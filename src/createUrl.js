@@ -17,7 +17,10 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const url = template;
+  const pattern = new RegExp(/{.+?}/g);
+
+  return url.replace(pattern, parameter => params[parameter.slice(1, -1)]);
 }
 
 module.exports = createUrl;
