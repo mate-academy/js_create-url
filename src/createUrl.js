@@ -10,14 +10,17 @@
  * createUrl('/api/{id}', {id: 0}) === '/api/0'
  * createUrl('/api/{id}', {name: 'Petya'}) === '/api/undefined'
  * createUrl('/api/{list}/{id}', {list: 'items', id: 0}) === '/api/items/0'
- *
- * @param {string} template
- * @param {object} params
- *
- * @return {string} - created URL
- */
+
+*
+* @param {string} template
+* @param {object} params
+*
+* @return {string} - created URL
+*/
 function createUrl(template, params) {
-  // write code here
+  const pattern = /\{([a-z]{1,})\}/g;
+
+  return template.replace(pattern, (someVariable, element) => params[element]);
 }
 
 module.exports = createUrl;
