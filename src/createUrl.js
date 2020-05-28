@@ -20,10 +20,6 @@ function createUrl(template, params) {
   const preparedUrl = template;
   const pattern = /{(\w+)}/g;
 
-  // for (const key in params) {
-  //   preparedUrl = preparedUrl.replace(`{${key}}`, params[key]);
-  // }
-
   return preparedUrl.replace(pattern, (match, element) => {
     return params[element];
   });
