@@ -18,6 +18,9 @@
  */
 function createUrl(template, params) {
   // write code here
+  return template.replace(/{(\w+)}/g, (match, str) => {
+    return params[str];
+  });
 }
 
 module.exports = createUrl;
