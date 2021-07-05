@@ -17,7 +17,25 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let url = '';
+  const templArray = template.split('/');
+
+  if (templArray[0] !== '') {
+    url = templArray[0];
+  }
+
+  for (let i = 1; i < templArray.length; i++) {
+    let item = templArray[i];
+
+    if (item[0] === '{' && item[item.length - 1] === '}') {
+      item = item.replace(/[{}]/g, '');
+      item = params[item];
+    }
+
+    url += '/' + item;
+  }
+
+  return url;
 }
 
 module.exports = createUrl;
