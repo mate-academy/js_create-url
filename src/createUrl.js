@@ -17,7 +17,14 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let newURL = template;
+  const wordsToChange = template.match(/\{.+?\}/g);
+
+  for (const word of wordsToChange) {
+    newURL = newURL.replace(word, params[word.slice(1, -1)]);
+  }
+
+  return newURL;
 }
 
 module.exports = createUrl;
