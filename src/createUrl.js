@@ -17,7 +17,10 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  // eslint-disable-next-line no-return-assign
+  return template.replace(/{(\w+)}/g, (match, value, index) => {
+    return params[value];
+  });
 }
 
 module.exports = createUrl;
