@@ -17,7 +17,21 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  let res = template;
+
+  for (let i = 0; i < template.length; i++) {
+    const wordToReplase = res.match(/{\w*}/);
+
+    res = res.replace(wordToReplase, replacer);
+  }
+
+  function replacer(wordToReplase) {
+    const normalizedWord = wordToReplase.slice(1, -1);
+
+    return params[normalizedWord];
+  }
+
+  return res;
 }
 
 module.exports = createUrl;
