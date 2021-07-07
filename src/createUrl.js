@@ -9,7 +9,7 @@
  *
  * createUrl('/api/{id}', {id: 0}) === '/api/0'
  * createUrl('/api/{id}', {name: 'Petya'}) === '/api/undefined'
- * createUrl('/api/{list}/{id}', {list: 'items', id: 0}) === '/api/items/0'
+ * createUrl(''/api/{list}/{id}'', {list: 'items', id: 0}) === '/api/items/0'
  *
  * @param {string} template
  * @param {object} params
@@ -17,7 +17,15 @@
  * @return {string} - created URL
  */
 function createUrl(template, params) {
-  // write code here
+  const regex = /{(\w+)}/gi;
+
+  const url = template.replace(regex,
+    function(object, section) {
+      return params[section];
+    }
+  );
+
+  return url;
 }
 
 module.exports = createUrl;
